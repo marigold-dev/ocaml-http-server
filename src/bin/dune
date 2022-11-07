@@ -1,4 +1,6 @@
 (executable
  (public_name ocaml_http_server)
  (name main)
- (libraries routes piaf))
+ (libraries routes piaf)
+ (preprocess
+  (pps ppx_yojson_conv)))
