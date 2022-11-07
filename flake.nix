@@ -38,6 +38,9 @@
                   nixfmt
                   treefmt
                 ];
+              packages = with pkgs; [
+                wrk
+              ];
             });
           };
 

@@ -24,6 +24,8 @@ buildDunePackage {
   propagatedBuildInputs = [
     piaf
     routes
+    ppx_yojson_conv
+    yojson
   ];
 
   inherit doCheck;
