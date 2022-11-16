@@ -1,10 +1,8 @@
-
 {
   inputs = {
     nixpkgs.url = "github:nix-ocaml/nix-overlays";
     flake-utils.url = "github:numtide/flake-utils";
     nix-filter.url = "github:numtide/nix-filter";
-
   };
 
   outputs = { self, nixpkgs, flake-utils, nix-filter }:
@@ -14,7 +12,8 @@
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays =nixpkgs.overlays."${system}".default;
+            overlays = nixpkgs.overlays."${system}".default;
+            extraOverlays = [ (import ./nix/overlay.nix) ];
           };
           ocamlPackages_dev = pkgs.ocaml-ng.ocamlPackages_5_00;
           ocaml-http-server = (pkgs.callPackage ./nix {
@@ -38,9 +37,7 @@
                   nixfmt
                   treefmt
                 ];
-              packages = with pkgs; [
-                wrk
-              ];
+              packages = with pkgs; [ wrk ];
             });
           };
 
