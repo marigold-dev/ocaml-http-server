@@ -59,7 +59,7 @@ let () =
   Eio.Switch.run @@ fun sw ->
   print_endline "Server started";
   let port = 8080 in
-  let config = Piaf.Server.Config.create port in
+  let config = Piaf.Server.Config.create ~domains:8 port in
   let server = Piaf.Server.create ~config request_handler in
   let _ = Piaf.Server.Command.start ~sw env server in
   ()
